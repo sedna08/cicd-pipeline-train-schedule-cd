@@ -29,7 +29,20 @@ pipeline {
                                         sourceFiles: 'dist/trainSchedule.zip',
                                         removePrefix: 'dist/',
                                         remoteDirectory: '/tmp',
-                                        execCommand: 'sudo /usr/bin/systemctl stop train-schedule && sudo rm -rf /opt/train-schedule/* && sudo unzip /tmp/trainSchedule.zip -d /opt/train-schedule && sudo /usr/bin/systemctl start train-schedule'
+                                        execCommand: '''
+                                            # Extract the files
+                                            sudo rm -rf /opt/train-schedule/*
+                                            sudo unzip /tmp/trainSchedule.zip -d /opt/train-schedule
+                                            
+                                            # Set correct permissions
+                                            sudo chown -R cloud_user:cloud_user /opt/train-schedule
+                                            sudo chmod -R 755 /opt/train-schedule
+                                            sudo chmod +x /opt/train-schedule/app.js
+
+                                            # Restart the service
+                                            sudo /usr/bin/systemctl stop train-schedule
+                                            sudo /usr/bin/systemctl start train-schedule
+                                        '''
                                     )
                                 ]
                             )
@@ -61,7 +74,20 @@ pipeline {
                                         sourceFiles: 'dist/trainSchedule.zip',
                                         removePrefix: 'dist/',
                                         remoteDirectory: '/tmp',
-                                        execCommand: 'sudo /usr/bin/systemctl stop train-schedule && sudo rm -rf /opt/train-schedule/* && sudo unzip /tmp/trainSchedule.zip -d /opt/train-schedule && sudo /usr/bin/systemctl start train-schedule'
+                                        execCommand: '''
+                                            # Extract the files
+                                            sudo rm -rf /opt/train-schedule/*
+                                            sudo unzip /tmp/trainSchedule.zip -d /opt/train-schedule
+                                            
+                                            # Set correct permissions
+                                            sudo chown -R cloud_user:cloud_user /opt/train-schedule
+                                            sudo chmod -R 755 /opt/train-schedule
+                                            sudo chmod +x /opt/train-schedule/app.js
+
+                                            # Restart the service
+                                            sudo /usr/bin/systemctl stop train-schedule
+                                            sudo /usr/bin/systemctl start train-schedule
+                                        '''
                                     )
                                 ]
                             )
