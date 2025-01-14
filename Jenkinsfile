@@ -37,6 +37,7 @@ pipeline {
                                             sudo unzip /tmp/trainSchedule.zip -d /opt/train-schedule
                                             
                                             # Set correct permissions
+                                            sudo chown -R cloud_user:cloud_user /opt/train-schedule
                                             sudo chmod -R 755 /opt/train-schedule
 
                                             # Restart the service
@@ -81,6 +82,7 @@ pipeline {
                                             sudo unzip /tmp/trainSchedule.zip -d /opt/train-schedule
                                             
                                             # Set correct permissions
+                                            sudo chown -R cloud_user:cloud_user /opt/train-schedule
                                             sudo chmod -R 755 /opt/train-schedule
 
                                             # Restart the service
